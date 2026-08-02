@@ -1,0 +1,29 @@
+services:
+  docktail:
+    image: ghcr.io/marvinvr/docktail:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/tailscale:/var/run/tailscale
+    environment:
+      - TAILSCALE_OAUTH_CLIENT_ID=${TAILSCALE_OAUTH_CLIENT_ID}
+      - TAILSCALE_OAUTH_CLIENT_SECRET=${TAILSCALE_OAUTH_CLIENT_SECRET}
+      - DEFAULT_SERVICE_TAGS=tag:docktail-service
+
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest
+    container_name: stirling-pdf
+    labels:
+      - "docktail.service.enable=true"
+      - "docktail.service.name=stirling-pdf"
+      - "docktail.service.port=8080"
+      - "docktail.service.service-port=443"
+    environment:
+      SECURITY_ENABLELOGIN: "true"
+      STORAGE_ENABLED: "true"
+      STORAGE_PROVIDER: "local"
+      STORAGE_LOCAL_BASEPATH: "/storage"
+    volumes:
+      - ./stirling-data:/configs
+      - ./stirling-data:/storage
+    restart: unless-stopped
