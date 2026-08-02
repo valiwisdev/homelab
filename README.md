@@ -4,7 +4,7 @@
 
 - **Device:** Mac mini M2 (8 GB RAM).
 - **Network:** Tailscale for private mesh connectivity (MagicDNS + encrypted tunnels).
-- **Primary services:** `ollama` (local LLM) and Docker containers: `stirling-pdf`, `transmute`, `ryot`, `docmost`.
+- **Primary services:** `ollama` (local LLM). Docker services (`stirling-pdf`, `transmute`, `ryot`, `docmost`) run inside a VM on the Mac (Orbstack).
 - **Exposure:** Services are reachable over Tailscale — either by publishing host ports to the Tailscale interface or using Tailscale Serve / HTTP advertising. Other Tailscale nodes can reach services via MagicDNS names or node IPs.
 
 ## Services
