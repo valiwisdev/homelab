@@ -50,6 +50,7 @@ services:
 
   docmost:
     image: docmost/docmost:latest
+    container_name: docmost
     depends_on:
       - db
       - redis
@@ -91,6 +92,7 @@ services:
 
   ryot:
     image: ignisda/ryot:v10
+    container_name: ryot
     restart: unless-stopped
     labels:
       - "docktail.service.enable=true"
