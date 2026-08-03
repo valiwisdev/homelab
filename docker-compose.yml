@@ -35,7 +35,7 @@ services:
       - "docktail.service.enable=true"
       - "docktail.service.name=transmute"
       - "docktail.service.port=3313"
-      - "docktail.service.service-port=3313"
+      - "docktail.service.service-port=443"
     restart: unless-stopped
     ports:
       - "3313:3313"
@@ -58,7 +58,7 @@ services:
       - "docktail.service.enable=true"
       - "docktail.service.name=docmost"
       - "docktail.service.port=3000"
-      - "docktail.service.service-port=3000"
+      - "docktail.service.service-port=443"
     environment:
       APP_URL: 'http://localhost:3000'
       APP_SECRET: ${APP_SECRET}
@@ -98,7 +98,7 @@ services:
       - "docktail.service.enable=true"
       - "docktail.service.name=ryot"
       - "docktail.service.port=8000"
-      - "docktail.service.service-port=8000"
+      - "docktail.service.service-port=443"
     ports:
       - "8000:8000"
     environment:
